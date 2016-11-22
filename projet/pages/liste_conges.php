@@ -13,7 +13,6 @@
             $data = $info->getInfoConges($_SESSION['id']);
             $length = count($data);
 
-
             for ($i = 1; $i < $length; $i++) {
                 if ($data[$i]->__get('validite') == -1) {
                     $fond = "refusee";
