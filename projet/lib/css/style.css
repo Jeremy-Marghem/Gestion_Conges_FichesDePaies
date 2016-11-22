@@ -1,0 +1,16 @@
+body{
+    background-color: #E6EDEC;
+}
+header{
+    height: 100px;
+    width: 100%;
+}
+.en_attente{
+    background-color: orange;
+}
+.acceptee{
+    background-color: #49DC2B;
+}
+.refusee{
+    background-color: red;
+}
