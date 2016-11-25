@@ -6,9 +6,10 @@ Projet de 3ème année dans le cadre du cours de programmation avancée
 To Do List
 
 * Page home
-* Page de demande de congés
 * Page changement de mot de passe
+* Fixs au niveau de la selection des dates pour demandes de congés
 * Partie privée du site destinée aux administrateurs
+* Maj dans la doc des modifications de la DB (Suppresion de la table calendrier)
 * Generation des fiches de paies au format PDF
 
 Done
@@ -19,6 +20,7 @@ Done
 * Page de profil
 * Page visualisation des demandes de congés
 * Page visualisation des fiches de paies
+* Page de demande de congés
 
 Fixs
 

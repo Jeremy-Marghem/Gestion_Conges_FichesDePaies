@@ -10,10 +10,9 @@ class InfoCongesDB extends InfoConges{
     
     public function getInfoConges($id){
         try{
-            $query = "SELECT c1.jour_calendrier AS debut, c2.jour_calendrier AS fin, "
-                        . "c2.jour_calendrier-c1.jour_calendrier AS jours, co.validite FROM conges co, calendrier c1, "
-                        . "calendrier c2 WHERE co.id_individu = :id_individu AND co.id_calendrier=c1.id_calendrier AND "
-                        . "co.id_calendrier_conges_fin=c2.id_calendrier";
+            $query = "SELECT co.date_debut AS debut, co.date_fin AS fin, co.date_fin-co.date_debut AS jours,"
+                        . " co.validite FROM conges co"
+                        . " WHERE co.id_individu = :id_individu";         
             $resultset = $this->_db->prepare($query);
             $resultset->bindValue(1,$id);
             $resultset->execute();	
@@ -26,5 +25,17 @@ class InfoCongesDB extends InfoConges{
         }
         
         return $_infoArray;
+    }
+    
+    public function createConge($debut,$fin,$individu){
+        try{
+            $query = "INSERT INTO conges (date_debut,date_fin,id_individu,validite) VALUES ('$debut','$fin',$individu,0)";
+            $resultset=$this->_db->prepare($query);
+            $resultset->execute();
+            return 1;
+        }catch(PDOException $ex){
+            echo $ex->getMessage();
+            return 0;
+        }
     }
 }

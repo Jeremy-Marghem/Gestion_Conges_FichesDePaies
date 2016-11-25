@@ -15,7 +15,13 @@ session_start();
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="../lib/css/bootstrap-3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
         <link href="../lib/css/style.css" type="text/css" rel="stylesheet">
+        
+        <!-- Bootstrap Date-Picker Plugin -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        
         <meta charset="UTF-8">
         <title>Site de l'entreprise</title>
     </head>
@@ -25,23 +31,23 @@ session_start();
     <body>
         <div class="container">
             <?php
-            if(file_exists('../admin/lib/php/menu.php')) {
+            if (file_exists('../admin/lib/php/menu.php')) {
                 include_once('../admin/lib/php/menu.php');
             }
             ?>
             <?php
-            if(!isset($_SESSION['page'])) {
+            if (!isset($_SESSION['page'])) {
                 $_SESSION['page'] = "accueil";
             }
             if (isset($_GET['page'])) {
                 $_SESSION['page'] = $_GET['page'];
             }
-            
+
             $path = $_SESSION['page'] . '.php';
-            
+
             if (file_exists($path)) {
                 include_once($path);
-            }else{
+            } else {
                 echo "Oups! Page introuvable, merci de contacter le service informatique!";
             }
             ?>            

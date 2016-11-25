@@ -22,7 +22,7 @@
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="accueil.php?page=liste_conges">Mes congés</a></li>
-                    <li><a href="#">Nouvelle demande</a></li>
+                    <li><a href="accueil.php?page=demande_conges">Nouvelle demande</a></li>
                 </ul>
             </li>
         </ul>
