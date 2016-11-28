@@ -7,7 +7,7 @@
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="accueil.php?page=profil">Voir mon profil</a></li>
-                    <li><a href="#">Changer mon mot de passe</a></li>
+                    <li><a href="accueil.php?page=changementMdp">Changer mon mot de passe</a></li>
                 </ul>
             </li>
             <li class="dropdown-toggle">

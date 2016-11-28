@@ -1,7 +1,6 @@
 <?php
 include ('../admin/lib/php/liste_include.php');
 $cnx = Connexion::getInstance($dsn, $user, $pass);
-
 session_start();
 ?>
 <!DOCTYPE html>
@@ -15,13 +14,13 @@ session_start();
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="../lib/css/bootstrap-3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+        
         <link href="../lib/css/style.css" type="text/css" rel="stylesheet">
         
         <!-- Bootstrap Date-Picker Plugin -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-        
+
         <meta charset="UTF-8">
         <title>Site de l'entreprise</title>
     </head>

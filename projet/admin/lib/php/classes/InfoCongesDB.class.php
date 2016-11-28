@@ -10,7 +10,7 @@ class InfoCongesDB extends InfoConges{
     
     public function getInfoConges($id){
         try{
-            $query = "SELECT co.date_debut AS debut, co.date_fin AS fin, co.date_fin-co.date_debut AS jours,"
+            $query = "SELECT co.date_debut AS debut, co.date_fin AS fin, co.nb_jours AS jours,"
                         . " co.validite FROM conges co"
                         . " WHERE co.id_individu = :id_individu";         
             $resultset = $this->_db->prepare($query);
@@ -27,9 +27,9 @@ class InfoCongesDB extends InfoConges{
         return $_infoArray;
     }
     
-    public function createConge($debut,$fin,$individu){
+    public function createConge($debut,$fin,$nbJours,$individu){
         try{
-            $query = "INSERT INTO conges (date_debut,date_fin,id_individu,validite) VALUES ('$debut','$fin',$individu,0)";
+            $query = "INSERT INTO conges (date_debut,date_fin,nb_jours,id_individu,validite) VALUES ('$debut','$fin',$nbJours,$individu,0)";
             $resultset=$this->_db->prepare($query);
             $resultset->execute();
             return 1;

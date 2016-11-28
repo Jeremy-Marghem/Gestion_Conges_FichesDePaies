@@ -12,12 +12,19 @@
                         <label class="control-label" for="date_fin">Date de fin</label>
                         <input class="form-control" id="date_fin" name="date_fin" placeholder="JJ MM AAAA" type="text"/>
                     </div>
+                    <br/>
+                    <div>
+                        <label>Jours de congés disponible(s): <?php echo $_SESSION['conges'] ?></label>
+                    </div>
                     <br/><br/>
                     <div class="form-group">
                         <div>
                             <input name="_honey" style="display:none" type="text"/>
                             <button class="btn btn-primary" name="submit" type="submit">Envoyer la demande</button>
                         </div>
+                    </div>
+                    <div>
+                        <span id="remarque"></span>
                     </div>
                 </form>
             </div>
@@ -31,7 +38,7 @@
                         todayHighlight: true,
                         autoclose: true,
                         weekStart: 1,
-                        language: 'de'
+                        daysOfWeekDisabled: "0,6"
                     };
                     date_input.datepicker(options);
                 });
@@ -44,7 +51,7 @@
                         todayHighlight: true,
                         autoclose: true,
                         weekStart: 1,
-                        language: 'de'
+                        daysOfWeekDisabled: "0,6"
                     };
                     date_input.datepicker(options);
                 });
@@ -57,25 +64,47 @@ if (isset($_POST['submit'])) {
     $debut = date_create($_POST['date_debut']);
     $fin = date_create($_POST['date_fin']);
 
-    
-    $interval = $debut->diff($fin);//CALCUL DU NOMBRE DE JOURS VIA LA FONCTION DIF
-    
-    if(intval($interval->format('%a'))>$_SESSION['conges']-1){
+    //On recupere les numeros de semaines ain de pouvoir en deduire le nombre de week-end compris
+    $semaineDebut = new DateTime($_POST['date_debut']);
+    $semaineDebut = $semaineDebut->format('W');
+    $semaineFin = new DateTime($_POST['date_fin']);
+    $semaineFin = $semaineFin->format('W');
+
+    //Nombre de week-ends
+    $nbWeekEnds = $semaineFin - $semaineDebut;
+    $weekEnds = $nbWeekEnds * 2;
+
+    //Calcul du nombre de jours
+    $interval = $debut->diff($fin);
+    $interval = $interval->format('%a');
+    $interval = intval($interval);
+
+    //On retire du nombre de jours le nombre de jours compris lors des weeks ends
+    $interval = $interval - $weekEnds;
+
+    if ($interval > $_SESSION['conges'] - 1) {
         //SI CONGES TROP LONG
-        echo "Vous ne disposez que de ".$_SESSION['conges']." jour(s) de congés";
-    }else
-    {
+        ?>
+        <script>
+            $('#remarque').html("Vous ne disposez que de " +<?php echo $_SESSION['conges'] ?> + " jour(s) de congés");
+        </script>        
+        <?php
+    } else {
         //SI DEMANDE CORRECTE
-        
+
         $info = new InfoCongesDB($cnx);
-        $resultat = $info->createConge($_POST['date_debut'],$_POST['date_fin'],$_SESSION['id']);
-        
-        ////GERER RESULTAT => SI 0 ERREUR, SI 1 OK
-        ///SI 1 RENVOYER VERS LA AGE DES CONGES
-        if($resultat==1){
+        $resultat = $info->createConge($_POST['date_debut'], $_POST['date_fin'], $interval + 1, $_SESSION['id']);
+
+        if ($resultat == 1) {
+            ?>
+            <script>
+                $('#remarque').html("Demande enregistrée!");
+            </script>    
+            <?php
         }
     }
 }
+
 function transform($string) {
     $annee = 0;
     $annee = substr($string, 0, 4);
