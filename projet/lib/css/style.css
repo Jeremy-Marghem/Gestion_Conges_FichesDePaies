@@ -1,5 +1,6 @@
 body{
-    background-color: #E6EDEC;
+    /*background-color: #E6EDEC;*/   
+    background-image:url(../images/fontPersonnel.jpg);
 }
 header{
     height: 100px;
@@ -14,6 +15,15 @@ header{
 .refusee{
     background-color: red;
 }
+.txtBlanc{
+    color: white;
+}
 .errorRed{
     color: red;
+    background-color: black;
+    padding: 5px;
+}
+.errorRed2{
+    color:red;
+    text-align: center;
 }

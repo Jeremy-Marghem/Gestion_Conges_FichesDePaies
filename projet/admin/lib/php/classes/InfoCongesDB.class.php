@@ -19,7 +19,7 @@ class InfoCongesDB extends InfoConges{
         } catch (PDOException $e) {
             print $e->getMessage();
         }
-        $_infoArray[0]=0;
+        $_infoArray=null;
         while($data=$resultset->fetch()){
             $_infoArray[]=new InfoConges($data);
         }

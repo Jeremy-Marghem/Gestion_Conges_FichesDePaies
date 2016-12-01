@@ -1,6 +1,6 @@
 <?php
 
-class InfoIndividuDB extends InfoIndividu{
+class InfoAdminDB extends InfoIndividu{
 
     private $_db;
     public $_infoArray = array();
@@ -9,9 +9,9 @@ class InfoIndividuDB extends InfoIndividu{
         $this->_db = $db;
     }
     
-    public function getVerifIndividu($login,$password){
+    public function getVerifAdmin($login,$password){
         try{
-            $query = "SELECT * FROM individu WHERE login = :login AND password = :password";
+            $query = "SELECT * FROM administrateur WHERE login = :login AND password = :password";
             $resultset = $this->_db->prepare($query);
             $resultset->bindValue(1,$login);
             $resultset->bindValue(2,$password);
@@ -19,7 +19,7 @@ class InfoIndividuDB extends InfoIndividu{
         } catch (PDOException $e) {
             print $e->getMessage();
         }
-        $_infoArray = null;
+        $_infoArray=null;
         while($data=$resultset->fetch()){
             $_infoArray[]=new InfoIndividu($data);
         }
@@ -29,7 +29,7 @@ class InfoIndividuDB extends InfoIndividu{
     
     public function getVerifMdp($id,$mdp){
         try{
-            $query = "SELECT * FROM individu WHERE id_individu = :id AND password = :mdp";
+            $query = "SELECT * FROM administrateur WHERE id_admin = :id AND password = :mdp";
             $resultset = $this->_db->prepare($query);
             $resultset->bindValue(1,$id);
             $resultset->bindValue(2,$mdp);
@@ -51,7 +51,7 @@ class InfoIndividuDB extends InfoIndividu{
     }
     public function getMajMdp($id,$password,$newpassword){
         try{
-            $query = "UPDATE individu SET password = :newpassword WHERE id_individu = :id AND password = :password";
+            $query = "UPDATE administrateur SET password = :newpassword WHERE id_admin = :id AND password = :password";
             $resultset = $this->_db->prepare($query);
             $resultset->bindValue(1,$newpassword);           
             $resultset->bindValue(2,$id);

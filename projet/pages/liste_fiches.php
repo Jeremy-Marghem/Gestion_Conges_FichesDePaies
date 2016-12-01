@@ -17,7 +17,7 @@
 
             for ($i = 1; $i < $length; $i++) {
                 ?>
-                <tr>
+                <tr class="acceptee">
                     <td class="text-center"><?php echo transform($data[$i]->__get('debut')) ?></td> <!-- Date de debut-->
                     <td class="text-center"><?php echo transform($data[$i]->__get('fin')) ?></td> <!-- Date de fin-->
                     <td class="text-center"><?php echo $data[$i]->__get('brut') ?> €</td> <!-- Salaire brut -->

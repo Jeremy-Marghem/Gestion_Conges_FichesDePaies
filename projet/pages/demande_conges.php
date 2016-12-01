@@ -2,7 +2,7 @@
 <div class="bootstrap-iso">
     <div class="container">
         <div class="row">
-            <div class="col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
+            <div class="well col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
                 <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                     <div class="form-group">
                         <label class="control-label" for="date_debut">Date de début</label>

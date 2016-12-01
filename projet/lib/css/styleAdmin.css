@@ -1,0 +1,16 @@
+body{
+    /*background-color: #E6EDEC;*/   
+    background-image:url(../images/fontAdmin.jpg);
+}
+.txtBlanc{
+    color: white;
+}
+.errorRed{
+    color: red;
+    background-color: black;
+    padding: 5px;
+}
+.errorRed2{
+    color:red;
+    text-align: center;
+}

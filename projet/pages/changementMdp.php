@@ -2,22 +2,22 @@
 <div class="bootstrap-iso">
     <div class="container">
         <div class="row">
-            <div class="col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
+            <div class="well col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
                 <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                     <div class="form-group">
                         <label class="control-label" for="mdp_actuel">Entrez le mot de passe actuel</label>
                         <input class="form-control" id="mdp_actuel" name="mdp_actuel" type="password"/>
-                        <span class="errorRed" id="errorMdp"></span>
+                        <span id="errorMdp"></span>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="new_mdp">Entrez le nouveau mot de passe</label>
                         <input class="form-control" id="new_mdp" name="new_mdp" type="password"/>
-                        <span class="errorNewMdp errorRed"></span>
+                        <span class="errorNewMdp"></span>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="new_mdp2">Confirmer le nouveau mot de passe</label>
                         <input class="form-control" id="new_mdp2" name="new_mdp2" type="password"/>
-                        <span class="errorNewMdp errorRed"></span>
+                        <span class="errorNewMdp"></span>
                     </div>                    
                     <br/> 
                     <span id="remarque"></span>
@@ -49,6 +49,7 @@ if (isset($_POST['submit'])) {
         ?>
         <script>
             $('#errorMdp').html("   Incorrect");
+            $('#errorMdp').addClass("errorRed2");
         </script>
         <?php
     }
@@ -61,6 +62,7 @@ if (isset($_POST['submit'])) {
         ?>
         <script>
             $('.errorNewMdp').html("Mots de passe différents");
+            $('#errorNewMdp').addClass("errorRed2");
         </script>
         <?php
     }elseif(strlen($new_mdp)<5){
@@ -68,6 +70,7 @@ if (isset($_POST['submit'])) {
         ?>
         <script>
             $('#remarque').html("Le nouveau mot de passe doit contenir 5 caractères minimum");
+            $('#remarque').addClass("errorRed2");
         </script>
         <?php           
     }
@@ -79,14 +82,15 @@ if (isset($_POST['submit'])) {
             ?>
             <script>
                 $('#remarque').html("Ereur lors de la mise à jour");
+                 $('#remarque').addClass("errorRed2");
             </script>
         <?php}else{
             ?>
             <script>
                 $('#remarque').html("Mot de passe bien mis à jour");
+                $('#remarque').css("color","green");
             </script>
             <?php
         }
     }
 }
-?>
