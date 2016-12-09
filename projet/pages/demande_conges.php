@@ -91,7 +91,16 @@ if (isset($_POST['submit'])) {
         <?php
     } else {
         //SI DEMANDE CORRECTE
-
+        $dateAjd= new DateTime();
+        
+        //ON VERIFIE SI LE CHOIX DES DATES EST CORRECT
+        if($_POST['date_debut']<$dateAjd||$_POST['date_fin']<$_POST['date_debut']){
+            ?>
+            <script>
+                $('#remarque').html("Erreur dans le choix des dates!");
+            </script>    
+            <?php  
+        }else{
         $info = new InfoCongesDB($cnx);
         $resultat = $info->createConge($_POST['date_debut'], $_POST['date_fin'], $interval + 1, $_SESSION['id']);
 
@@ -101,7 +110,7 @@ if (isset($_POST['submit'])) {
                 $('#remarque').html("Demande enregistrée!");
             </script>    
             <?php
-        }
+        }}
     }
 }
 

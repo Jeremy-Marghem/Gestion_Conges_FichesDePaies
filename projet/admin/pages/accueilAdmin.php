@@ -6,17 +6,35 @@ session_start();
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../../lib/css/bootstrap-3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!--JQUERY-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
 
+        
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="../../lib/css/bootstrap-3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!-- Optional theme -->
         <link rel="stylesheet" href="../../lib/css/bootstrap-3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-        <link rel="stylesheet" href="../../lib/css/style.css" type="text/css"/>
-
         <!-- Latest compiled and minified JavaScript -->
         <script src="../../lib/css/bootstrap-3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+        
 
+        <!--PLUGIN BOOTSTRAP SELECT-->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/i18n/defaults-*.min.js"></script>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
+        
+        <!--STYLE PERSONNEL-->
+        <link rel="stylesheet" href="../../lib/css/styleAdmin.css" type="text/css"/>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
+        
         <meta charset="UTF-8">
         <title>Projet Web</title>
     </head>

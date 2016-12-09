@@ -1,6 +1,9 @@
 body{
-    /*background-color: #E6EDEC;*/   
     background-image:url(../images/fontAdmin.jpg);
+}
+header{
+    height: 100px;
+    width: 100%;
 }
 .txtBlanc{
     color: white;
@@ -13,4 +16,8 @@ body{
 .errorRed2{
     color:red;
     text-align: center;
+}
+.labelHauteur34{
+    height: 34px;
+    margin-top: 5px;
 }

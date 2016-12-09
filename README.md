@@ -5,7 +5,9 @@ Projet de 3ème année dans le cadre du cours de programmation avancée
 
 To Do List
 
-* Fonctionnalités côté Administrateur
+* Traitement des demandes de conges
+* Recherche du personnel
+* Encodage fiches de paies + appels AJAX selection
 * Page home côté Personnel
 * Maj dans la doc des modifications de la DB (Suppresion de la table calendrier)
 * Generation des fiches de paies au format PDF
@@ -22,6 +24,7 @@ Done
 * Page changement de mot de passe (Avec différentes verifications sur les champs)
 * Partie privée du site destinée aux administrateurs
 * Mise à jour graphique du site (Ajout wallpapers)
+* Page ajout fiches de paies
 
 Fixs
 

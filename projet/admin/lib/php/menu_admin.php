@@ -14,7 +14,7 @@
                 <a aria-haspopup="true" aria-expanded="true" data-toggle="dropdown" role="button">Fiches de salaire
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Encoder une nouvelle fiche</a></li>
+                    <li><a href="accueilAdmin.php?page=encoderPersonnel">Encoder une nouvelle fiche</a></li>
                 </ul>
             </li>
             <li class="dropdown-toggle">
