@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
                     </div>    
                     <div class="col-xs-12 form-group">
                         <label class="labelHauteur34 col-xs-6 control-label" for="date_debut">Nom: </label>
-                        <select class="col-xs-6 selectpicker" data-style="btn-info" id="listePersonnel" data-live-search="true">
+                        <select class="col-xs-6 selectpicker" data-style="btn-info" id="listePersonnel" name="listePersonnel" data-live-search="true">
                         </select>
                     </div>
                     <div class="col-xs-12 form-group">
@@ -61,7 +61,95 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </div>
+<?php
+if (isset($_POST['submit'])) {
+
+    $ok = true;
+
+    $salaire = $_POST['brut'];
+    $regexSalaire = "#\d(\,|\.)\d#";
+    $heures = $_POST['heures'];
+
+    if (!(preg_match($regexSalaire, $salaire))) {
+        $ok = false;
+        ?>
+        <script>
+            $('#remarqueS').html("Erreur");
+        </script>
+        <?php
+    }
+    if (!is_numeric($heures)) {
+        $ok = false;
+        ?>
+        <script>
+            $('#remarqueH').html("Erreur");
+        </script>
+        <?php
+    }
+
+    if ($ok) {
+        $statut = $_POST['statut'];
+        switch ($statut) {
+            case 'employe':
+                $sal = $salaire - ($salaire * 0.3238);
+                break;
+            case 'ouvrier':
+                $sal = $salaire - (($salaire * 1.08) * 0.3838);
+                break;
+        }
+
+        ///TRAITEMENT
+
+        $dateAjd = new DateTime();
+
+        //ON VERIFIE SI LE CHOIX DES DATES EST CORRECT
+        if ($_POST['date_debut'] > $dateAjd || $_POST['date_fin'] < $_POST['date_debut']) {
+            ?>
+            <script>
+                $('#remarque').html("Erreur dans le choix des dates!");
+            </script>    
+            <?php
+        } else {
+            $id = $_POST['listePersonnel'];
+            $info = new InfoFichesDB($cnx);
+            $resultat = $info->create($_POST['date_debut'], $id, $_POST['date_fin'], $salaire, $sal, $heures);
+            if ($resultat == 1) {
+                ?>
+                <script>
+                    $('#remarque').html("Demande enregistrée!");
+                </script>    
+                <?php
+            }else{
+                ?>
+                <script>
+                    $('#remarque').html("Erreur lors de l'enregistrement!");
+                </script>    
+                <?php      
+            }
+        }
+    }
+}
+?>
 <script>
+    var listeEmploye;
+    var listeOuvrier;
+    $('document').ready(function () {
+        chargementEmploye();
+        chargementOuvrier();
+        remplirPersonnel(0);
+    });
+
+    $('#statut').change(function () {
+        var option = $(this).find("option:selected");
+        $('#listePersonnel').empty();
+        if (option.val() === "ouvrier") {
+            $('#taux').html("TAUX: 38.38%");
+            remplirPersonnel(1);
+        } else {
+            $('#taux').html("TAUX: 32.38%");
+            remplirPersonnel(0);
+        }
+    });
     $(document).ready(function () {
         var date_input = $('input[name="date_debut"]');
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
@@ -88,94 +176,6 @@ if (isset($_POST['submit'])) {
         };
         date_input.datepicker(options);
     });
-</script>
-<?php
-if (isset($_POST['submit'])) {
-
-    $ok = true;
-
-    $salaire = $_POST['brut'];
-    $regexSalaire = "#\d(\,|\.)\d#";
-    $heures = $_POST['heures'];
-    $regexHeures = "#\d*#";
-
-    if (!(preg_match($regexSalaire, $salaire))) {
-        $ok = false;
-        ?>
-        <script>
-            $('#remarqueS').html("Erreur");
-        </script>
-        <?php
-    }
-    if (!(is_numeric($heures))) {
-        $ok = false;
-        ?>
-        <script>
-            $('#remarqueH').html("Erreur");
-        </script>
-        <?php
-    }
-
-    if ($ok) {
-        $IDtemporaire = 1;
-        $statut = $_POST['statut'];
-        switch ($statut) {
-            case 'employe':
-                $statut = 1;
-                $sal = $salaire - ($salaire * 0.3238);
-                break;
-            case 'ouvrier':
-                $statut = 2;
-                $sal = $salaire - (($salaire * 1.08) * 0.3838);
-                break;
-        }
-
-        ///TRAITEMENT
-        
-        $dateAjd= new DateTime();
-        $debut = date_create($_POST['date_debut']);
-        $fin = date_create($_POST['date_fin']);
-        
-        //ON VERIFIE SI LE CHOIX DES DATES EST CORRECT
-        if($_POST['date_debut']<$dateAjd||$_POST['date_fin']<$_POST['date_debut']){
-            ?>
-            <script>
-                $('#remarque').html("Erreur dans le choix des dates!");
-            </script>    
-            <?php  
-        }else{
-             ///CREATION VIA DAO RENVOIE 1 SI OK
-        if ($resultat == 1) {
-            ?>
-            <script>
-                $('#remarque').html("Demande enregistrée!");
-            </script>    
-            <?php
-        }}        
-    }
-}
-?>
-<script>
-    var listeEmploye;
-    var listeOuvrier;
-    $('document').ready(function () {
-        chargementEmploye();
-        chargementOuvrier();
-        remplirPersonnel(0);
-    });
-
-    $('#statut').change(function () {
-        var option = $(this).find("option:selected");
-        $('#listePersonnel').empty();
-        if (option.val() === "ouvrier") {
-            $('#taux').html("TAUX: 38.38%");
-            remplirPersonnel(1);
-        } else {
-            $('#taux').html("TAUX: 32.38%");
-            remplirPersonnel(0);
-        }
-    });
-
     function remplirPersonnel(code) {
         var liste = null;
         if (code === 0) {
@@ -186,44 +186,45 @@ if (isset($_POST['submit'])) {
         }
         $('#listePersonnel').empty(); //On vide le select
         for (var i = 0; i < liste.length; i++) {
-            $('#listePersonnel').append($('<option>', {value: i, text: liste[i]['nom']}));
+            var personne = liste[i]['nom']+" "+liste[i]['prenom'];
+            $('#listePersonnel').append($('<option>', {value: liste[i]['id'], text: personne}));
         }
         $('.selectpicker').selectpicker('refresh'); //On refresh le select
     }
     ;
     function chargementEmploye() {
         ///INCLURE ICI AJAX 
-<?php
-$info = new InfoIndividuDB($cnx);
-$data = $info->getAllIndividu(1);
-$length = count($data);
+        <?php
+        $info = new InfoIndividuDB($cnx);
+        $data = $info->getAllIndividu(1);
+        $length = count($data);
 
-$tab = array();
+        $tab = array();
 
-for ($i = 0; $i < $length; $i++) {
-    $tab[$i]['id'] = ($data[$i]->__get('id_individu'));
-    $tab[$i]['nom'] = ($data[$i]->__get('nom_individu'));
-    $tab[$i]['prenom'] = ($data[$i]->__get('prenom_individu'));
-}
-?>
+        for ($i = 0; $i < $length; $i++) {
+            $tab[$i]['id'] = ($data[$i]->__get('id_individu'));
+            $tab[$i]['nom'] = ($data[$i]->__get('nom_individu'));
+            $tab[$i]['prenom'] = ($data[$i]->__get('prenom_individu'));
+        }
+        ?>
         listeEmploye = <?php echo json_encode($tab) ?>;
     }
     ;
     function chargementOuvrier() {
         ///INCLURE ICI AJAX        
-<?php
-$info2 = new InfoIndividuDB($cnx);
-$data2 = $info2->getAllIndividu(2);
-$length2 = count($data2);
+        <?php
+        $info2 = new InfoIndividuDB($cnx);
+        $data2 = $info2->getAllIndividu(2);
+        $length2 = count($data2);
 
-$tab2 = array();
+        $tab2 = array();
 
-for ($i = 0; $i < $length2; $i++) {
-    $tab2[$i]['id'] = ($data2[$i]->__get('id_individu'));
-    $tab2[$i]['nom'] = ($data2[$i]->__get('nom_individu'));
-    $tab2[$i]['prenom'] = ($data2[$i]->__get('prenom_individu'));
-}
-?>
+        for ($i = 0; $i < $length2; $i++) {
+            $tab2[$i]['id'] = ($data2[$i]->__get('id_individu'));
+            $tab2[$i]['nom'] = ($data2[$i]->__get('nom_individu'));
+            $tab2[$i]['prenom'] = ($data2[$i]->__get('prenom_individu'));
+        }
+        ?>
         listeOuvrier = <?php echo json_encode($tab2) ?>;
     }
     ;

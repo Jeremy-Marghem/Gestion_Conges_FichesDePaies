@@ -8,10 +8,8 @@ To Do List
 * Traitement des demandes de conges
 * Recherche du personnel
 * Ajout du personnel
-* Encodage fiches de paies + appels AJAX selection
 * Page home côté Personnel
 * Maj dans la doc des modifications de la DB (Suppresion de la table calendrier)
-* Mise en page PDF fiches de paie
 
 Done
 
@@ -27,6 +25,9 @@ Done
 * Mise à jour graphique du site (Ajout wallpapers)
 * Page ajout fiches de paies
 * Generation des fiches de paies au format PDF
+* Encodage fiches de paies
+* Mise en page PDF fiches de paie
+
 
 Fixs
 
