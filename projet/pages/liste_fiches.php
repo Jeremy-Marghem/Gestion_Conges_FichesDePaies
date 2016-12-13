@@ -23,7 +23,7 @@
                     <td class="text-center"><?php echo $data[$i]->__get('brut') ?> €</td> <!-- Salaire brut -->
                     <td class="text-center"><?php echo $data[$i]->__get('net') ?> €</td> <!-- Salaire net -->
                     <td class="text-center"><?php echo $data[$i]->__get('heures') ?> heures</td> <!-- Heures prestees -->
-                    <td class="text-center"><span id="<?php echo $data[$i]->__get('id_fiche') ?>" class="glyphicon glyphicon-download-alt"></span></td> <!-- Génération PDF -->            
+                    <td class="text-center"><a href="printFiche.php?id=<?php echo $data[$i]->__get('id_fiche') ?>&nom=<?php echo $_SESSION['nom']?>&prenom=<?php echo $_SESSION['prenom']?>" target="_blank"><span class="glyphicon glyphicon-download-alt"></span></a></td> <!-- Génération PDF -->            
                 </tr>
                 <?php
             }

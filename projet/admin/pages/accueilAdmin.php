@@ -29,7 +29,10 @@ session_start();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/i18n/defaults-*.min.js"></script>
         <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
 
-        
+        <!-- Bootstrap Date-Picker Plugin -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    
         <!--STYLE PERSONNEL-->
         <link rel="stylesheet" href="../../lib/css/styleAdmin.css" type="text/css"/>
         <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
