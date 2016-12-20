@@ -1,4 +1,4 @@
-<br/><br/><br/><br/>
+<br/><br/>
 <div class="bootstrap-iso">
     <div class="container">
         <div class="row">
@@ -92,9 +92,9 @@ if (isset($_POST['submit'])) {
     } else {
         //SI DEMANDE CORRECTE
         $dateAjd= new DateTime();
-        
+
         //ON VERIFIE SI LE CHOIX DES DATES EST CORRECT
-        if($_POST['date_debut']<$dateAjd||$_POST['date_fin']<$_POST['date_debut']){
+        if($debut<$dateAjd||$_POST['date_fin']<$_POST['date_debut']){
             ?>
             <script>
                 $('#remarque').html("Erreur dans le choix des dates!");
@@ -112,41 +112,5 @@ if (isset($_POST['submit'])) {
             <?php
         }}
     }
-}
-
-function transform($string) {
-    $annee = 0;
-    $annee = substr($string, 0, 4);
-    $mois = 0;
-    $mois = substr($string, 5, 2);
-    switch ($mois) {
-        case 1: $mois = "Janvier";
-            break;
-        case 2: $mois = "Fevrier";
-            break;
-        case 3: $mois = "Mars";
-            break;
-        case 4: $mois = "Avril";
-            break;
-        case 5: $mois = "Mai";
-            break;
-        case 6: $mois = "Juin";
-            break;
-        case 7: $mois = "Juillet";
-            break;
-        case 8: $mois = "Aout";
-            break;
-        case 9: $mois = "Septembre";
-            break;
-        case 10: $mois = "Octobre";
-            break;
-        case 11: $mois = "Novembre";
-            break;
-        case 12: $mois = "Decembre";
-            break;
-    }
-    $jour = 0;
-    $jour = substr($string, 8, 2);
-    return $jour . " " . $mois . " " . $annee;
 }
 ?>

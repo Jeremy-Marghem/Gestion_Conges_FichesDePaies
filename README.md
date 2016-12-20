@@ -5,11 +5,11 @@ Projet de 3ème année dans le cadre du cours de programmation avancée
 
 To Do List
 
+* Encodage nouveau personnel coté serveur
 * Traitement des demandes de conges
 * Recherche du personnel
-* Ajout du personnel
-* Page home côté Personnel
 * Maj dans la doc des modifications de la DB (Suppresion de la table calendrier)
+* Remplacement des query par des fonctions/procedures PL/SQL
 
 Done
 
@@ -27,7 +27,8 @@ Done
 * Generation des fiches de paies au format PDF
 * Encodage fiches de paies
 * Mise en page PDF fiches de paie
-
+* Ajout du personnel (non-connecté à la DB)
+* Page home côté Personnel et Administrateur
 
 Fixs
 

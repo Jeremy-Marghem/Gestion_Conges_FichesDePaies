@@ -5,6 +5,7 @@ require '../admin/lib/php/dbConnect.php';
 require '../admin/lib/php/classes/Connexion.class.php';
 require '../admin/lib/php/autoload.php';
 require('../admin/lib/php/fpdf/fpdf.php');
+require('../lib/php/fonctions.php');
 
 $cnx = Connexion::getInstance($dsn, $user, $pass);
 
@@ -38,41 +39,3 @@ $pdf->MultiCell(0,1,"\nBrut: ".$data[1]->__get('brut').chr(128)."\nNet: ".$data[
 $pdf->MultiCell(0,1,"\nHeures prest".utf8_decode("é")."es: ".$data[1]->__get('heures')." heures",0,'L',0);
 
 $pdf->Output();
-
-
-function transform($string){
-$annee=0;
-$annee=substr($string,0,4);
-$mois=0;	
-$mois=substr($string,5,2);
-switch($mois){
-    case 1: $mois = "Janvier";
-        break;
-    case 2: $mois = "Fevrier";
-        break;
-    case 3: $mois = "Mars";
-        break;
-    case 4: $mois = "Avril";
-        break;
-    case 5: $mois = "Mai";
-        break;
-    case 6: $mois = "Juin";
-        break;
-    case 7: $mois = "Juillet";
-        break;
-    case 8: $mois = "Aout";
-        break;
-    case 9: $mois = "Septembre";
-        break;
-    case 10: $mois = "Octobre";
-        break;
-    case 11: $mois = "Novembre";
-        break;    
-    case 12: $mois = "Decembre";
-        break;    
-}
-$jour=0;	
-$jour=substr($string,8,2);
-return $jour." ".$mois." ".$annee;
-
-}

@@ -1,7 +1,7 @@
 <div class="well row">
     <div>
         <ul class="nav nav-tabs col-lg-9">
-            <li><a href="accueil.php?page=accueil"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li><a href="accueil.php?page=home"><span class="glyphicon glyphicon-home"></span></a></li>
             <li class="dropdown-toggle">
                 <a aria-haspopup="true" aria-expanded="true" data-toggle="dropdown" role="button">Profil
                     <span class="caret"></span></a>

@@ -1,8 +1,9 @@
 body{
     background-image:url(../images/fontPersonnel.jpg);
+    background-attachment: fixed;
 }
 header{
-    height: 100px;
+    height: 50px;
     width: 100%;
 }
 .en_attente{

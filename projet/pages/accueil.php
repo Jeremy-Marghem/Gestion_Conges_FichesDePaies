@@ -1,5 +1,6 @@
 <?php
 include ('../admin/lib/php/liste_include.php');
+include ('../lib/php/fonctions.php');
 $cnx = Connexion::getInstance($dsn, $user, $pass);
 session_start();
 ?>
@@ -36,7 +37,7 @@ session_start();
             ?>
             <?php
             if (!isset($_SESSION['page'])) {
-                $_SESSION['page'] = "accueil";
+                $_SESSION['page'] = "home";
             }
             if (isset($_GET['page'])) {
                 $_SESSION['page'] = $_GET['page'];

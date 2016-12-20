@@ -1,5 +1,6 @@
 <?php
 include ('../lib/php/liste_include.php');
+include ('../../lib/php/fonctions.php');
 $cnx = Connexion::getInstance($dsn, $user, $pass);
 ?>
 <!DOCTYPE html>
@@ -16,27 +17,28 @@ $cnx = Connexion::getInstance($dsn, $user, $pass);
         <!-- Latest compiled and minified JavaScript -->
         <script src="../../lib/css/bootstrap-3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+        
         <meta charset="UTF-8">
         <title>Projet Web - Côté Administrateurs</title>
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-xs-10 col-md-offset-3 col-md-6">
+                <div class="col-xs-12 col-md-offset-3 col-md-6">
                     <br/><br/><br/><br/>
-                    <h1 class="well text-center">Accés reservé au administrateurs</h1><hr><br/>
-
+                    <h2 class="well text-center">Accés reservé au administrateurs</h2>
+                    <hr><br/>
                     <form class="well" id="formulaire" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                         <h4 class="text-center">Login</h4>
                         <div class="row">
-                            <div class="col-xs-offset-3 col-xs-6">
+                            <div class="col-xs-offset-0 col-xs-12 col-md-offset-3 col-md-6 ">
                                 <input name="login" id="login" class="form-control" type="text" placeholder="prenom.admin@entreprise.com" required>
                             </div>
                         </div>
                         <br/><br/>
                         <h4 class="text-center">Mot de passe</h4>
                         <div class="row">
-                            <div class="col-xs-offset-3 col-xs-6">
+                            <div class="col-xs-offset-0 col-xs-12 col-md-offset-3 col-md-6">
                                 <input name="password" class="form-control" type="password" required>
                             </div>
                         </div> 
@@ -44,17 +46,21 @@ $cnx = Connexion::getInstance($dsn, $user, $pass);
                             <span id="remarque"></span></div>
                         <br/><br/>                        
                         <div class="row">
-                            <div class="col-xs-offset-3 col-xs-6">
+                            
+                            <div class="col-xs-offset-0 col-xs-12 col-md-offset-3 col-md-6">
                                 <br/><br/>
                                 <button type="submit" name="access" id="access" class="col-xs-offset-2 col-xs-8  btn btn-success ">Se connecter</button>
-                            </div>
+                            </div>                         
                         </div>                           
                     </form>
+                    <div class="col-xs-12">
+                        <a href="backIndex.php"><button type="submit" name="retour" id="retour" class="col-xs-offset-2 col-xs-8  btn btn-danger ">Retour</button></a>
+                    </div>    
+                    <br/><br/>
                 </div>
             </div>
         </div>
     </body>
-   <!-- <script src="./lib/js/login.js"></script> -->
 </html>
 <?php
 if (isset($_POST['access'])) {
@@ -71,7 +77,7 @@ if (isset($_POST['access'])) {
         $_SESSION['prenom'] = $utilisateur[0]->__get('prenom_admin');
         $_SESSION['page'] = "accueilAdmin";
         
-        header('Location: accueilAdmin.php');
+        header('Location: accueilAdmin.php?page=home');
     } else {
         ?>
         <script>

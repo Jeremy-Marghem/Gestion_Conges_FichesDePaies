@@ -1,6 +1,6 @@
 <?php
 
-class InfoIndividuDB extends InfoIndividu {
+class InfoIndividuDB extends InfoIndividu implements JsonSerializable {
 
     private $_db;
     public $_infoArray = array();
@@ -87,6 +87,9 @@ class InfoIndividuDB extends InfoIndividu {
         } catch (PDOException $ex) {
             
         }
+    }
+    public function jsonSerialize() {
+        return $this->array;
     }
 
 }

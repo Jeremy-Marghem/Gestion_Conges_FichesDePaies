@@ -1,4 +1,4 @@
-<br/><br/><br/><br/>
+<br/><br/>
 <div class="bootstrap-iso">
     <div class="container">
         <div class="row">
@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
         $ok = false;
         ?>
         <script>
-            $('.errorNewMdp').html("Mots de passe différents");
+            $('#errorNewMdp').html("Mots de passe différents");
             $('#errorNewMdp').addClass("errorRed2");
         </script>
         <?php

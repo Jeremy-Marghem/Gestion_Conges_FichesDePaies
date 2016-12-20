@@ -1,12 +1,12 @@
 <div class="well row">
     <div>
         <ul class="nav nav-tabs col-lg-9">
-            <li><a href="accueilAdmin.php?page=accueilAdmin"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li><a href="accueilAdmin.php?page=home"><span class="glyphicon glyphicon-home"></span></a></li>
             <li class="dropdown-toggle">
                 <a aria-haspopup="true" aria-expanded="true" data-toggle="dropdown" href="#" role="button">Personnel
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Ajout</a></li>
+                    <li><a href="accueilAdmin.php?page=encoderIndividu">Ajout</a></li>
                     <li><a href="#">Recherche</a></li>
                 </ul>
             </li>            

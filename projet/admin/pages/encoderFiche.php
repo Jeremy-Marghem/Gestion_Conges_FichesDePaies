@@ -1,14 +1,12 @@
 <?php
 $sal = '';
 $heu = '';
-
-
 if (isset($_POST['submit'])) {
     $sal = $_POST['brut'];
     $heu = $_POST['heures'];
 }
 ?> <!-- PERMET DE CONSERVER LES DONNEES ENTREES -->
-<br/><br/><br/><br/>
+<br/><br/>
 <div class="bootstrap-iso">
     <div class="container">
         <div class="row">
@@ -119,20 +117,24 @@ if (isset($_POST['submit'])) {
                     $('#remarque').html("Demande enregistrée!");
                 </script>    
                 <?php
-            }else{
+            } else {
                 ?>
                 <script>
                     $('#remarque').html("Erreur lors de l'enregistrement!");
                 </script>    
-                <?php      
+                <?php
             }
         }
+    } else {
+        $sal = $_POST['brut'];
+        $heu = $_POST['heures'];
     }
 }
 ?>
 <script>
     var listeEmploye;
     var listeOuvrier;
+
     $('document').ready(function () {
         chargementEmploye();
         chargementOuvrier();
@@ -176,45 +178,32 @@ if (isset($_POST['submit'])) {
         };
         date_input.datepicker(options);
     });
+
     function remplirPersonnel(code) {
         var liste = null;
+        console.log("remplirPersonnel");
         if (code === 0) {
+            console.log("EMPLOYE");
+            console.log(listeEmploye);
             liste = listeEmploye;
+            
         }
         if (code === 1) {
             liste = listeOuvrier;
         }
         $('#listePersonnel').empty(); //On vide le select
         for (var i = 0; i < liste.length; i++) {
-            var personne = liste[i]['nom']+" "+liste[i]['prenom'];
+            var personne = liste[i]['nom'] + " " + liste[i]['prenom'];
             $('#listePersonnel').append($('<option>', {value: liste[i]['id'], text: personne}));
         }
         $('.selectpicker').selectpicker('refresh'); //On refresh le select
     }
     ;
+
     function chargementEmploye() {
-        ///INCLURE ICI AJAX 
-        <?php
-        $info = new InfoIndividuDB($cnx);
-        $data = $info->getAllIndividu(1);
-        $length = count($data);
-
-        $tab = array();
-
-        for ($i = 0; $i < $length; $i++) {
-            $tab[$i]['id'] = ($data[$i]->__get('id_individu'));
-            $tab[$i]['nom'] = ($data[$i]->__get('nom_individu'));
-            $tab[$i]['prenom'] = ($data[$i]->__get('prenom_individu'));
-        }
-        ?>
-        listeEmploye = <?php echo json_encode($tab) ?>;
-    }
-    ;
-    function chargementOuvrier() {
-        ///INCLURE ICI AJAX        
         <?php
         $info2 = new InfoIndividuDB($cnx);
-        $data2 = $info2->getAllIndividu(2);
+        $data2 = $info2->getAllIndividu(1);
         $length2 = count($data2);
 
         $tab2 = array();
@@ -225,6 +214,25 @@ if (isset($_POST['submit'])) {
             $tab2[$i]['prenom'] = ($data2[$i]->__get('prenom_individu'));
         }
         ?>
+        listeEmploye = <?php echo json_encode($tab2) ?>;
+    }
+    ;
+
+    function chargementOuvrier() {
+        ///INCLURE ICI AJAX        
+<?php
+$info2 = new InfoIndividuDB($cnx);
+$data2 = $info2->getAllIndividu(2);
+$length2 = count($data2);
+
+$tab2 = array();
+
+for ($i = 0; $i < $length2; $i++) {
+    $tab2[$i]['id'] = ($data2[$i]->__get('id_individu'));
+    $tab2[$i]['nom'] = ($data2[$i]->__get('nom_individu'));
+    $tab2[$i]['prenom'] = ($data2[$i]->__get('prenom_individu'));
+}
+?>
         listeOuvrier = <?php echo json_encode($tab2) ?>;
     }
     ;
