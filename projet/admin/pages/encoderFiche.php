@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
                         </select>
                     </div>
                     <div class="col-xs-12 form-group">
-                        <label class="col-xs-6" id="taux">TAUX: 32.38%</label> <!-- SI OUVRIER 38.38%-->
+                        <label class="col-xs-6" id="taux">TAUX: 32.38%</label>
                     </div>
                     <div class="col-xs-12 form-group">
                         <label class="control-label">Salaire brut</label>
@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
     var listeEmploye;
     var listeOuvrier;
 
-    $('document').ready(function () {
+    $(document).ready(function () {
         chargementEmploye();
         chargementOuvrier();
         remplirPersonnel(0);
@@ -181,10 +181,8 @@ if (isset($_POST['submit'])) {
 
     function remplirPersonnel(code) {
         var liste = null;
-        console.log("remplirPersonnel");
         if (code === 0) {
             console.log("EMPLOYE");
-            console.log(listeEmploye);
             liste = listeEmploye;
             
         }
@@ -219,21 +217,20 @@ if (isset($_POST['submit'])) {
     ;
 
     function chargementOuvrier() {
-        ///INCLURE ICI AJAX        
-<?php
-$info2 = new InfoIndividuDB($cnx);
-$data2 = $info2->getAllIndividu(2);
-$length2 = count($data2);
+    <?php
+        $info2 = new InfoIndividuDB($cnx);
+        $data2 = $info2->getAllIndividu(2);
+        $length2 = count($data2);
 
-$tab2 = array();
+        $tab2 = array();
 
-for ($i = 0; $i < $length2; $i++) {
-    $tab2[$i]['id'] = ($data2[$i]->__get('id_individu'));
-    $tab2[$i]['nom'] = ($data2[$i]->__get('nom_individu'));
-    $tab2[$i]['prenom'] = ($data2[$i]->__get('prenom_individu'));
-}
-?>
-        listeOuvrier = <?php echo json_encode($tab2) ?>;
+        for ($i = 0; $i < $length2; $i++) {
+            $tab2[$i]['id'] = ($data2[$i]->__get('id_individu'));
+            $tab2[$i]['nom'] = ($data2[$i]->__get('nom_individu'));
+            $tab2[$i]['prenom'] = ($data2[$i]->__get('prenom_individu'));
+        }
+        ?>
+            listeOuvrier = <?php echo json_encode($tab2) ?>;
     }
     ;
 </script>

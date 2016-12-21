@@ -1,6 +1,6 @@
 <?php
 
-class InfoIndividuDB extends InfoIndividu implements JsonSerializable {
+class InfoIndividuDB extends InfoIndividu{
 
     private $_db;
     public $_infoArray = array();
@@ -84,12 +84,21 @@ class InfoIndividuDB extends InfoIndividu implements JsonSerializable {
             } else {
                 return 0;
             }
-        } catch (PDOException $ex) {
-            
+        } catch (PDOException $ex) {      
         }
     }
-    public function jsonSerialize() {
-        return $this->array;
+    
+    public function create($id_pays,$id_statut,$matricule,$nom,$prenom,$adresse,$cp,$localite,$tel,$conges,$mdp){
+        try{
+          $login = $prenom.".".$nom."@entreprise.com";
+          $query="INSERT INTO INDIVIDU (id_pays,id_statut,num_individu,nom_individu,prenom_individu,adresse_individu,cp_individu,localite_individu,tel_individu,nb_conges_individu,login,password,anciennete) VALUES ('$id_pays','$id_statut','$matricule','$nom','$prenom','$adresse','$cp','$localite','$tel','$conges','$login','$mdp',0)"; 
+            $resultset=$this->_db->prepare($query);
+            $resultset->execute();
+            return 1; 
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+            return 0;
+        }
     }
-
+            
 }

@@ -27,12 +27,16 @@ if (isset($_POST['submit'])) {
             <div class="well col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
                 <form name="formulaire" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                     <div class="col-xs-12 form-group">
-                        <label class="labelHauteur34 col-xs-6 control-label" for="Pays">Pays</label>
+                        <label class="labelHauteur34 col-xs-6 control-label" for="choixPays">Pays</label>
                         <select class="col-xs-6 selectpicker" data-style="btn-info" id="pays" name="pays">
+                            <option value="1">Belgique</option>
+                            <option value="2">France</option>
+                            <option value="3">Suisse</option>
+                            <option value="4">Luxembourg</option>
                         </select>
                     </div>    
                     <div class="col-xs-12 form-group">
-                        <label class="control-label" for="Matricule">Matricule</label>
+                        <label class="control-label" for="matricule">Matricule</label>
                         <input class="form-control" type="text" name="matricule" id="matricule" value="<?php echo $mat ?>"/>
                     </div>
                     <div class="col-xs-12 form-group">
@@ -84,8 +88,8 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>
         </div>
-    </div>
-</div>
+    </div>  
+</div> 
 <?php
 if (isset($_POST['submit'])) {
 
@@ -107,7 +111,7 @@ if (isset($_POST['submit'])) {
         </script>
         <?php
     }
-    if (!(preg_match($regexTel, $tel))) {
+    if (!(preg_match($regexTel, $tel))||  strlen($tel)>10) {
         $ok = false;
         ?>
         <script>
@@ -127,6 +131,22 @@ if (isset($_POST['submit'])) {
     }
 
     if ($ok) {
+        
+        $id_pays = $_POST['pays'];
+        $id_statut=1;
+        $matricule = $_POST['matricule'];
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $adresse = $_POST['adresse'];
+        $cp = $_POST['cp'];
+        $localite = $_POST['localite'];
+        $tel = $_POST['tel'];
+        $conges = $_POST['conges'];
+        $mdp = $_POST['mdp'];
+
+        $info = new InfoIndividuDB($cnx);
+        $resultat = $info->create($id_pays,$id_statut,$matricule,strtolower($nom),strtolower($prenom),$adresse,$cp,$localite,$tel,$conges,$mdp);
+        if($resultat==1){
         ?>
         <script>
             $('#matricule').val("");
@@ -137,13 +157,26 @@ if (isset($_POST['submit'])) {
             $('#localite').val("");
             $('#tel').val("");
             $('#conges').val("");
-            $('mdp').val("");
+            $('#mdp').val("");
 
             $('#remarqueCp').html("");
             $('#remarqueTel').html("");
             $('#remarqueConges').html("");
+            
+            $('#remarque').html("Individu enregistré!");
         </script>
         <?php
+        }
+        else{
+        ?>
+        <script>
+            $('#remarqueCp').html("");
+            $('#remarqueTel').html("");
+            $('#remarqueConges').html("");
+            
+            $('#remarque').html("Erreur lors de l'enregistrement!");
+        </script>
+        <?php 
+        }
     }
 }
-?>
