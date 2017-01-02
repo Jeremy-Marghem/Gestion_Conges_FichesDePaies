@@ -26,7 +26,34 @@ class InfoCongesDB extends InfoConges{
         
         return $_infoArray;
     }
-    
+    public function getDemandes(){
+        try{
+            $query = "SELECT c.id_conges, i.nom_individu, i.prenom_individu, c.date_debut, c.date_fin, c.nb_jours "
+                    . "FROM conges c, individu i "
+                    . "WHERE c.validite = 0 AND c.id_individu = i.id_individu";
+            $resultset = $this->_db->prepare($query);
+            $resultset->execute();
+        } catch (PDOException $ex) {
+            print $ex->getMessage();
+        }
+        $_infoArray=null;
+        while($data=$resultset->fetch()){
+            $_infoArray[]=new InfoConges($data);
+        }
+        
+        return $_infoArray;    
+    }
+    public function updateConge($id, $val){
+        try{
+            $query = "UPDATE conges SET validite = '$val' WHERE id_conges='$id'";
+            $resultset=$this->_db->prepare($query);
+            $resultset->execute();
+            return 1;
+        }catch(PDOException $ex){
+            echo $ex->getMessage();
+            return 0;
+        }    
+    }
     public function createConge($debut,$fin,$nbJours,$individu){
         try{
             $query = "INSERT INTO conges (date_debut,date_fin,nb_jours,id_individu,validite) VALUES ('$debut','$fin',$nbJours,$individu,0)";

@@ -5,7 +5,6 @@ Projet de 3ème année dans le cadre du cours de programmation avancée
 
 To Do List
 
-* Traitement des demandes de conges
 * Recherche du personnel
 * Maj dans la doc des modifications de la DB (Suppresion de la table calendrier)
 * Remplacement des query par des fonctions/procedures PL/SQL
@@ -29,6 +28,7 @@ Done
 * Ajout du personnel (non-connecté à la DB)
 * Page home côté Personnel et Administrateur
 * Encodage nouveau personnel
+* Traitement des demandes de conges
 
 Fixs
 

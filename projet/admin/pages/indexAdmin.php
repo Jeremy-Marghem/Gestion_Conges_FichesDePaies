@@ -1,6 +1,5 @@
 <?php
 include ('../lib/php/liste_include.php');
-include ('../../lib/php/fonctions.php');
 $cnx = Connexion::getInstance($dsn, $user, $pass);
 ?>
 <!DOCTYPE html>

@@ -21,7 +21,7 @@
                 <a aria-haspopup="true" aria-expanded="true" data-toggle="dropdown" href="#" role="button">Congés
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Gérer les demandes</a></li>
+                    <li><a href="accueilAdmin.php?page=gestionDemandes">Gérer les demandes</a></li>
                 </ul>
             </li>
         </ul>
