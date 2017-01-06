@@ -1,6 +1,6 @@
 <br/><br/>
-<div class="row">
-    <section class="well col-lg-offset-3 col-lg-6">
+<div class="row bords">
+    <section class="well col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
         <p><strong>Nom:</strong> <?php echo $_SESSION['nom'] ?>
         <p><strong>Prenom:</strong> <?php echo $_SESSION['prenom'] ?></p>
         <p><strong>Adresse:</strong> <?php echo $_SESSION['adresse'] ?></p>

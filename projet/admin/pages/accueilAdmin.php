@@ -42,7 +42,7 @@ session_start();
         <title>Projet Web</title>
     </head>
     <header>
-
+        <a href="logout.php"><button class="btn btn-danger">Se deconnecter</button></a>
     </header>
     <body>
         <div class="container">

@@ -26,7 +26,7 @@ session_start();
         <title>Site de l'entreprise</title>
     </head>
     <header>
-
+        <a href="logout.php"><button class="btn btn-danger">Se deconnecter</button></a>
     </header>
     <body>
         <div class="container">

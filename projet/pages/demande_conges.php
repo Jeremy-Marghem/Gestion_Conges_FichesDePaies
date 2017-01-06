@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <div>
                             <input name="_honey" style="display:none" type="text"/>
-                            <button class="btn btn-primary" name="submit" type="submit">Envoyer la demande</button>
+                            <button class="btn btn-primary col-xs-12" name="submit" type="submit">Envoyer</button>
                         </div>
                     </div>
                     <div>

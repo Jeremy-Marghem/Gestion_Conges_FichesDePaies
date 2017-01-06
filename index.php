@@ -10,7 +10,7 @@ $cnx = Connexion::getInstance($dsn, $user, $pass);
         <!-- Optional theme -->
         <link rel="stylesheet" href="projet/lib/css/bootstrap-3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+        
         <link rel="stylesheet" href="projet/lib/css/style.css" type="text/css"/>
 
         <!-- Latest compiled and minified JavaScript -->

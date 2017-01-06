@@ -1,7 +1,7 @@
 <br/><br/>
 <div class="row">
     <div class="table-responsive">
-        <table class="col-lg-12 table-bordered table-striped table-condensed table-hover">
+        <table class=" col-xs-offset-1 col-xs-10  table-bordered table-striped table-condensed table-hover">
             <tr class="well">
                 <th class="text-center">Du</th>
                 <th class="text-center">Au</th>
@@ -27,7 +27,8 @@
                 </tr>
                 <?php
             }
-            ?>            
+            ?>  
+        </table>
     </div>
 </div>
 

@@ -13,15 +13,15 @@ if (isset($_POST['submit'])) {
             <div class="well col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
                 <form name="formulaire" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                     <div class="col-xs-12 form-group">
-                        <label class="labelHauteur34 col-xs-6 control-label" for="date_debut">Statut: </label>
-                        <select class="col-xs-6 selectpicker" data-style="btn-info" id="statut" name="statut">
+                        <label class="labelHauteur34 col-sm-6 col-xs-12 control-label" for="date_debut">Statut: </label>
+                        <select class="col-sm-6 col-xs-12 selectpicker" data-style="btn-info" id="statut" name="statut">
                             <option value="employe">Employé</option>
                             <option value="ouvrier">Ouvrier</option>
                         </select>
                     </div>    
                     <div class="col-xs-12 form-group">
-                        <label class="labelHauteur34 col-xs-6 control-label" for="date_debut">Nom: </label>
-                        <select class="col-xs-6 selectpicker" data-style="btn-info" id="listePersonnel" name="listePersonnel" data-live-search="true">
+                        <label class="labelHauteur34 col-sm-6 col-xs-12 control-label" for="date_debut">Nom: </label>
+                        <select class="col-sm-6 col-xs-12 selectpicker" data-style="btn-info" id="listePersonnel" name="listePersonnel" data-live-search="true">
                         </select>
                     </div>
                     <div class="col-xs-12 form-group">
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-group col-xs-12">
                         <div>
                             <input name="_honey" style="display:none" type="text"/>
-                            <button class="col-xs-offset-3 col-xs-6 btn btn-primary" name="submit" type="submit">Encoder la fiche</button>
+                            <button class="col-xs-12 btn btn-primary" name="submit" type="submit">Encoder</button>
                         </div>
                     </div>
                     <div>

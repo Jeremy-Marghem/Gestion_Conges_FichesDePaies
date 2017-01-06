@@ -6,7 +6,6 @@ Projet de 3ème année dans le cadre du cours de programmation avancée
 To Do List
 
 * Recherche du personnel
-* Maj dans la doc des modifications de la DB (Suppresion de la table calendrier)
 * Remplacement des query par des fonctions/procedures PL/SQL
 
 Done
@@ -29,6 +28,7 @@ Done
 * Page home côté Personnel et Administrateur
 * Encodage nouveau personnel
 * Traitement des demandes de conges
+* Maj dans la doc des modifications de la DB (Suppresion de la table calendrier)
 
 Fixs
 
@@ -36,6 +36,7 @@ Fixs
 * Calcul du nombre de jours de congés demandés en ne comptant pas les WE (Ajout d'un champ jours dans table congés de la db)
 * Formatage des dates dans la page visualisation des congés
 * Affichage d'une erreur lorsque les identifiants sont erronés
+* Gestion du positionnement selon la taille d'écran avec Bootstrap
 
 Others
 

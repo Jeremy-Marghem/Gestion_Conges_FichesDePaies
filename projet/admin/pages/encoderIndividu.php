@@ -27,8 +27,8 @@ if (isset($_POST['submit'])) {
             <div class="well col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
                 <form name="formulaire" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                     <div class="col-xs-12 form-group">
-                        <label class="labelHauteur34 col-xs-6 control-label" for="choixPays">Pays</label>
-                        <select class="col-xs-6 selectpicker" data-style="btn-info" id="pays" name="pays">
+                        <label class="labelHauteur34 col-sm-6 col-xs-12 control-label" for="choixPays">Pays</label>
+                        <select class="col-sm-6 col-xs-12 selectpicker" data-style="btn-info" id="pays" name="pays">
                             <option value="1">Belgique</option>
                             <option value="2">France</option>
                             <option value="3">Suisse</option>
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-group col-xs-12">
                         <div>
                             <input name="_honey" style="display:none" type="text"/>
-                            <button class="col-xs-offset-3 col-xs-6 btn btn-primary" name="submit" type="submit">Encoder la fiche</button>
+                            <button class="col-xs-12 btn btn-primary" name="submit" type="submit">Encoder</button>
                         </div>
                     </div>
                     <div>

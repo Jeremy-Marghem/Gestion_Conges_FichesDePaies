@@ -1,7 +1,7 @@
 <br/><br/>
 <div class="row">
     <div class="table-responsive">
-        <table class="well col-lg-12 table-bordered table-condensed table-hover">
+        <table class="well col-xs-offset-1 col-xs-10 table-bordered table-condensed table-hover">
             <tr>
                 <th class="text-center">Date de debut</th>
                 <th class="text-center">Date de fin</th>
