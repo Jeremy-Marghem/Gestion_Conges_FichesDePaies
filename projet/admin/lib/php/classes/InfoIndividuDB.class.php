@@ -9,15 +9,15 @@ class InfoIndividuDB extends InfoIndividu{
         $this->_db = $db;
     }
 
-    public function getAllIndividu($id_statut) {
+    public function getAllIndividu() {
         try {
-            $query = "SELECT * FROM individu WHERE id_statut = :id_statut";
+            $query = "SELECT * FROM individu ORDER BY nom_individu";
             $resultset = $this->_db->prepare($query);
-            $resultset->bindValue(1,$id_statut);
             $resultset->execute();
         } catch (PDOException $e) {
             print $e->getMessage();
         }
+        
         $_infoArray = null;
         
         while ($data = $resultset->fetch()) {
@@ -26,7 +26,23 @@ class InfoIndividuDB extends InfoIndividu{
 
         return $_infoArray;
     }
+    public function searchByName($recherche){
+        try{
+            $query = "SELECT * FROM individu WHERE nom_individu = '$recherche'";
+            $resultset = $this->_db->prepare($query);
+            $resultset->execute();
+        } catch (PDOException $ex) {
 
+        }
+        
+        $_infoArray = null;
+        
+        while ($data = $resultset->fetch()) {
+            $_infoArray[] = new InfoIndividu($data);
+        }
+
+        return $_infoArray;        
+    }
     public function getVerifIndividu($login, $password) {
         try {
             $query = "SELECT * FROM individu WHERE login = :login AND password = :password";
@@ -70,21 +86,15 @@ class InfoIndividuDB extends InfoIndividu{
 
     public function getMajMdp($id, $password, $newpassword) {
         try {
-            $query = "UPDATE individu SET password = :newpassword WHERE id_individu = :id AND password = :password";
+            $query = "UPDATE individu SET password = '$newpassword' WHERE id_individu = '$id' AND password = '$password'";
             $resultset = $this->_db->prepare($query);
-            $resultset->bindValue(1, $newpassword);
-            $resultset->bindValue(2, $id);
-            $resultset->bindValue(3, $password);
             $resultset->execute();
 
             $retour = $resultset->fetchColumn(0);
 
-            if ($retour == 1) {
-                return 1;
-            } else {
-                return 0;
-            }
-        } catch (PDOException $ex) {      
+            return $retour;
+        } catch (PDOException $ex) { 
+            return 0;
         }
     }
     

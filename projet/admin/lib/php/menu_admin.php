@@ -7,7 +7,7 @@
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="accueilAdmin.php?page=encoderIndividu">Ajout</a></li>
-                    <li><a href="#">Recherche</a></li>
+                    <li><a href="accueilAdmin.php?page=rechercheIndividu">Recherche</a></li>
                 </ul>
             </li>            
             <li class="dropdown-toggle col-lg-3 col-md-3 col-sm-3 col-xs-12">

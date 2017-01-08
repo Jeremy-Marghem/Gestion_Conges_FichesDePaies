@@ -19,8 +19,8 @@
             for ($i = 0; $i < $length; $i++) {
                 ?>
                 <tr>
-                    <td class="text-center"><?php echo $data[$i]->__get('nom_individu') ?></td>
-                    <td class="text-center"><?php echo $data[$i]->__get('prenom_individu') ?></td>
+                    <td class="text-center"><?php echo ucfirst($data[$i]->__get('nom_individu')) ?></td>
+                    <td class="text-center"><?php echo ucfirst($data[$i]->__get('prenom_individu')) ?></td>
                     <td class="text-center"><?php echo transform($data[$i]->__get('date_debut')) ?></td>
                     <td class="text-center"><?php echo transform($data[$i]->__get('date_fin')) ?></td>
                     <td class="text-center"><?php echo $data[$i]->__get('nb_jours') ?></td>

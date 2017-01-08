@@ -51,11 +51,8 @@ class InfoAdminDB extends InfoIndividu{
     }
     public function getMajMdp($id,$password,$newpassword){
         try{
-            $query = "UPDATE administrateur SET password = :newpassword WHERE id_admin = :id AND password = :password";
+            $query = "SELECT updateAdmin('$id','$password','$newpassword'";
             $resultset = $this->_db->prepare($query);
-            $resultset->bindValue(1,$newpassword);           
-            $resultset->bindValue(2,$id);
-            $resultset->bindValue(3,$password);
             $resultset->execute();
             
             $retour = $resultset -> fetchColumn(0);

@@ -45,23 +45,24 @@ class InfoCongesDB extends InfoConges{
     }
     public function updateConge($id, $val){
         try{
-            $query = "UPDATE conges SET validite = '$val' WHERE id_conges='$id'";
+            $query = "SELECT updateConge(:id,:val)";
             $resultset=$this->_db->prepare($query);
+            $resultset -> bindValue(1,$id);
+            $resultset -> bindValue(2,$val);
             $resultset->execute();
-            return 1;
+            $retour = $resultset -> fetchColumn(0);
+            return $retour;
         }catch(PDOException $ex){
-            echo $ex->getMessage();
             return 0;
         }    
     }
     public function createConge($debut,$fin,$nbJours,$individu){
         try{
-            $query = "INSERT INTO conges (date_debut,date_fin,nb_jours,id_individu,validite) VALUES ('$debut','$fin',$nbJours,$individu,0)";
+            $query = "SELECT createConge('$debut','$fin','$nbJours','$individu',0)";
             $resultset=$this->_db->prepare($query);
             $resultset->execute();
             return 1;
         }catch(PDOException $ex){
-            echo $ex->getMessage();
             return 0;
         }
     }

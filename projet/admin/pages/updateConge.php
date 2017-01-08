@@ -7,7 +7,7 @@ $resultat = $inf->updateConge($id, $val);
 if($resultat == 1){
     $message = "Demande bien traitée!";
 }else{
-    $message = "Erreur lors du traitement! Veuillez contacter un adminiastrateur!";
+    $message = "Erreur lors du traitement! Veuillez contacter un administrateur!";
 }
 ?>
 <br/><br/>
