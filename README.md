@@ -3,10 +3,6 @@
 Projet de 3ème année dans le cadre du cours de programmation avancée
 
 
-To Do List
-
-* Remplacement des query par des fonctions/procedures PL/SQL (en cours)
-* Diminution du nombre de congés lors d'une demande
 
 Done
 
@@ -30,6 +26,8 @@ Done
 * Traitement des demandes de conges
 * Maj dans la doc des modifications de la DB (Suppresion de la table calendrier)
 * Recherche du personnel (featuring Barre de Recherche super cool!)
+* Remplacement des query par des fonctions/procedures PL/SQL (en cours)
+* Diminution du nombre de congés lors d'une demande + augmentation si refusée
 
 Fixs
 
