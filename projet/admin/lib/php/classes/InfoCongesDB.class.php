@@ -28,7 +28,7 @@ class InfoCongesDB extends InfoConges{
     }
     public function getDemandes(){
         try{
-            $query = "SELECT c.id_conges, i.nom_individu, i.prenom_individu, c.date_debut, c.date_fin, c.nb_jours "
+            $query = "SELECT c.id_conges, c.id_individu, i.nom_individu, i.prenom_individu, c.date_debut, c.date_fin, c.nb_jours "
                     . "FROM conges c, individu i "
                     . "WHERE c.validite = 0 AND c.id_individu = i.id_individu";
             $resultset = $this->_db->prepare($query);

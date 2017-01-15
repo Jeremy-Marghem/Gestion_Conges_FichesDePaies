@@ -14,7 +14,7 @@
                     </div>
                     <br/>
                     <div>
-                        <label>Jours de congés disponible(s): <?php echo $_SESSION['conges'] ?></label>
+                        <label id="nbc">Jours de congés disponible(s): <?php echo $_SESSION['conges'] ?></label>
                     </div>
                     <br/><br/>
                     <div class="form-group">
@@ -103,11 +103,19 @@ if (isset($_POST['submit'])) {
         }else{
         $info = new InfoCongesDB($cnx);
         $resultat = $info->createConge($_POST['date_debut'], $_POST['date_fin'], $interval + 1, $_SESSION['id']);
-
+        
+        //Diminution du nombre de jour de conges dispo dans la db
+        $info = new InfoIndividuDB($cnx);
+        $info->diminueNb($_SESSION['id'], $interval + 1);
+        
+        //MAJ de la variable de session CONGES
+        $_SESSION['conges'] = $_SESSION['conges'] - ($interval +1);
+        
         if ($resultat == 1) {
             ?>
             <script>
                 $('#remarque').html("Demande enregistrée!");
+                $('#nbc').html("Jours de congés disponible(s): <?php echo $_SESSION['conges'] ?>");
             </script>    
             <?php
         }}
