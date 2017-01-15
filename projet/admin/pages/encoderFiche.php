@@ -13,19 +13,23 @@ if (isset($_POST['submit'])) {
             <div class="well col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
                 <form name="formulaire" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                     <div class="col-xs-12 form-group">
-                        <label class="labelHauteur34 col-sm-6 col-xs-12 control-label" for="date_debut">Statut: </label>
-                        <select class="col-sm-6 col-xs-12 selectpicker" data-style="btn-info" id="statut" name="statut">
-                            <option value="employe">Employé</option>
-                            <option value="ouvrier">Ouvrier</option>
+                        <label class="labelHauteur34 col-sm-4 col-xs-12 control-label" for="date_debut">Individu: </label>
+                        <select class="col-sm-8 col-xs-12 selectpicker" data-style="btn-info" id="listePersonnel" name="listePersonnel" data-live-search="true">
+                        <?php
+                            $info = new InfoIndividuDB($cnx);
+                            $data = $info->getAllIndividu();
+                            $length = count($data);
+                            $tab = array();
+
+                            for ($i = 0; $i < $length; $i++) {
+                                $id = ($data[$i]->__get('id_individu'));
+                                $perso = ucfirst($data[$i]->__get('nom_individu'))." ".ucfirst($data[$i]->__get('prenom_individu'));
+                                ?>
+                                <option value="<?php echo $id?>"><?php echo $perso?></option>
+                                <?php
+                            }
+                        ?>
                         </select>
-                    </div>    
-                    <div class="col-xs-12 form-group">
-                        <label class="labelHauteur34 col-sm-6 col-xs-12 control-label" for="date_debut">Nom: </label>
-                        <select class="col-sm-6 col-xs-12 selectpicker" data-style="btn-info" id="listePersonnel" name="listePersonnel" data-live-search="true">
-                        </select>
-                    </div>
-                    <div class="col-xs-12 form-group">
-                        <label class="col-xs-6" id="taux">TAUX: 32.38%</label>
                     </div>
                     <div class="col-xs-12 form-group">
                         <label class="control-label">Salaire brut</label>
@@ -72,7 +76,7 @@ if (isset($_POST['submit'])) {
         $ok = false;
         ?>
         <script>
-            $('#remarqueS').html("Erreur");
+            $('#remarqueS').html("Erreur, veuillez respecter ce format: 1250.0");
         </script>
         <?php
     }
@@ -86,16 +90,6 @@ if (isset($_POST['submit'])) {
     }
 
     if ($ok) {
-        $statut = $_POST['statut'];
-        switch ($statut) {
-            case 'employe':
-                $sal = $salaire - ($salaire * 0.3238);
-                break;
-            case 'ouvrier':
-                $sal = $salaire - (($salaire * 1.08) * 0.3838);
-                break;
-        }
-
         ///TRAITEMENT
 
         $dateAjd = new DateTime();
@@ -114,7 +108,7 @@ if (isset($_POST['submit'])) {
             if ($resultat == 1) {
                 ?>
                 <script>
-                    $('#remarque').html("Demande enregistrée!");
+                    $('#remarque').html("Fiche enregistrée!");
                 </script>    
                 <?php
             } else {
@@ -132,26 +126,6 @@ if (isset($_POST['submit'])) {
 }
 ?>
 <script>
-    var listeEmploye;
-    var listeOuvrier;
-
-    $(document).ready(function () {
-        chargementEmploye();
-        chargementOuvrier();
-        remplirPersonnel(0);
-    });
-
-    $('#statut').change(function () {
-        var option = $(this).find("option:selected");
-        $('#listePersonnel').empty();
-        if (option.val() === "ouvrier") {
-            $('#taux').html("TAUX: 38.38%");
-            remplirPersonnel(1);
-        } else {
-            $('#taux').html("TAUX: 32.38%");
-            remplirPersonnel(0);
-        }
-    });
     $(document).ready(function () {
         var date_input = $('input[name="date_debut"]');
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
@@ -178,59 +152,4 @@ if (isset($_POST['submit'])) {
         };
         date_input.datepicker(options);
     });
-
-    function remplirPersonnel(code) {
-        var liste = null;
-        if (code === 0) {
-            console.log("EMPLOYE");
-            liste = listeEmploye;
-            
-        }
-        if (code === 1) {
-            liste = listeOuvrier;
-        }
-        $('#listePersonnel').empty(); //On vide le select
-        for (var i = 0; i < liste.length; i++) {
-            var personne = liste[i]['nom'] + " " + liste[i]['prenom'];
-            $('#listePersonnel').append($('<option>', {value: liste[i]['id'], text: personne}));
-        }
-        $('.selectpicker').selectpicker('refresh'); //On refresh le select
-    }
-    ;
-
-    function chargementEmploye() {
-        <?php
-        $info2 = new InfoIndividuDB($cnx);
-        $data2 = $info2->getAllIndividu(1);
-        $length2 = count($data2);
-
-        $tab2 = array();
-
-        for ($i = 0; $i < $length2; $i++) {
-            $tab2[$i]['id'] = ($data2[$i]->__get('id_individu'));
-            $tab2[$i]['nom'] = ($data2[$i]->__get('nom_individu'));
-            $tab2[$i]['prenom'] = ($data2[$i]->__get('prenom_individu'));
-        }
-        ?>
-        listeEmploye = <?php echo json_encode($tab2) ?>;
-    }
-    ;
-
-    function chargementOuvrier() {
-    <?php
-        $info2 = new InfoIndividuDB($cnx);
-        $data2 = $info2->getAllIndividu(2);
-        $length2 = count($data2);
-
-        $tab2 = array();
-
-        for ($i = 0; $i < $length2; $i++) {
-            $tab2[$i]['id'] = ($data2[$i]->__get('id_individu'));
-            $tab2[$i]['nom'] = ($data2[$i]->__get('nom_individu'));
-            $tab2[$i]['prenom'] = ($data2[$i]->__get('prenom_individu'));
-        }
-        ?>
-            listeOuvrier = <?php echo json_encode($tab2) ?>;
-    }
-    ;
 </script>
