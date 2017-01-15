@@ -110,23 +110,5 @@ class InfoIndividuDB extends InfoIndividu{
             return 0;
         }
     }
-      
-    public function augmenteNb($id,$n){
-        try{
-            $query="UPDATE individu SET nb_conges_individu = nb_conges_individu + ".intval($n)." WHERE id_individu = ".$id;
-            $resultset=$this->_db->prepare($query);
-            $resultset->execute();
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-        }
-    }
-    public function diminueNb($id,$n){
-        try{
-            $query="UPDATE individu SET nb_conges_individu = nb_conges_individu - ".intval($n)." WHERE id_individu = ".$id;
-            $resultset=$this->_db->prepare($query);
-            $resultset->execute();
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-        }
-    }    
+            
 }
