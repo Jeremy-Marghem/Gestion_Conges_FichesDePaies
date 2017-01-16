@@ -86,7 +86,7 @@ class InfoIndividuDB extends InfoIndividu{
 
     public function getMajMdp($id, $password, $newpassword) {
         try {
-            $query = "UPDATE individu SET password = '$newpassword' WHERE id_individu = '$id' AND password = '$password'";
+            $query = "SELECT updatemdp('$id','$newpassword''$password'";
             $resultset = $this->_db->prepare($query);
             $resultset->execute();
 
@@ -101,7 +101,7 @@ class InfoIndividuDB extends InfoIndividu{
     public function create($id_pays,$id_statut,$matricule,$nom,$prenom,$adresse,$cp,$localite,$tel,$conges,$mdp){
         try{
           $login = $prenom.".".$nom."@entreprise.com";
-          $query="INSERT INTO INDIVIDU (id_pays,id_statut,num_individu,nom_individu,prenom_individu,adresse_individu,cp_individu,localite_individu,tel_individu,nb_conges_individu,login,password,anciennete) VALUES ('$id_pays','$id_statut','$matricule','$nom','$prenom','$adresse','$cp','$localite','$tel','$conges','$login','$mdp',0)"; 
+          $query="SELECT createindividu('$id_pays','$id_statut','$matricule','$nom','$prenom','$adresse','$cp','$localite','$tel','$conges','$login','$mdp',0)"; 
             $resultset=$this->_db->prepare($query);
             $resultset->execute();
             return 1; 
@@ -110,8 +110,7 @@ class InfoIndividuDB extends InfoIndividu{
             return 0;
         }
     }
-      
-    public function augmenteNb($id,$n){
+       public function augmenteNb($id,$n){
         try{
             $query="UPDATE individu SET nb_conges_individu = nb_conges_individu + ".intval($n)." WHERE id_individu = ".$id;
             $resultset=$this->_db->prepare($query);
@@ -128,5 +127,5 @@ class InfoIndividuDB extends InfoIndividu{
         } catch (PDOException $ex) {
             echo $ex->getMessage();
         }
-    }    
+    }     
 }

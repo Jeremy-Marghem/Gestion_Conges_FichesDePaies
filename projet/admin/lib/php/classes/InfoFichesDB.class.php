@@ -47,7 +47,6 @@ class InfoFichesDB extends InfoFiches{
     }  
     public function create($debut,$id,$fin,$brut,$net,$heures){
         try{
-        $query="INSERT INTO FICHE_DE_PAIE (date_debut,id_individu,date_fin,brut_fiche,net_fiche,heures_fiche) VALUES ('$debut','$id','$fin','$brut','$net','$heures')";
         $resultset=$this->_db->prepare($query);
         $resultset->execute();
         return 1;
