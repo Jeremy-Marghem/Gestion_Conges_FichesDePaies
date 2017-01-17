@@ -26,44 +26,4 @@ class InfoAdminDB extends InfoIndividu{
 
         return $_infoArray;
     }
-    
-    public function getVerifMdp($id,$mdp){
-        try{
-            $query = "SELECT * FROM administrateur WHERE id_admin = :id AND password = :mdp";
-            $resultset = $this->_db->prepare($query);
-            $resultset->bindValue(1,$id);
-            $resultset->bindValue(2,$mdp);
-            $resultset->execute();
-            
-            $_infoArray[0]=0;
-            while($data=$resultset->fetch()){
-                $_infoArray[]=new InfoIndividu($data);
-            }
-
-            if(count($_infoArray)==2){
-                return 1;
-            }else{
-                return 0;
-            }
-          
-        }catch(PDOException $ex) {
-        }
-    }
-    public function getMajMdp($id,$password,$newpassword){
-        try{
-            $query = "SELECT updateAdmin('$id','$password','$newpassword'";
-            $resultset = $this->_db->prepare($query);
-            $resultset->execute();
-            
-            $retour = $resultset -> fetchColumn(0);
-
-            if($retour == 1){
-                return 1;
-            }else{
-                return 0;
-            }
-          
-        }catch(PDOException $ex) {
-        }
-    }    
 }

@@ -15,7 +15,7 @@ $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
 $adresse = $_SESSION['adresse'];
 $telephone = $_SESSION['tel'];
-$individu ="\nNom: ".$nom."\nPrenom: ".$prenom."\nAdresse: ".$adresse."\nT".utf8_decode("é")."l".utf8_decode("é")."phone: ".$telephone;
+$individu ="\nNom: ".ucfirst($nom)."\nPrenom: ".ucfirst($prenom)."\nAdresse: ".$adresse."\nT".utf8_decode("é")."l".utf8_decode("é")."phone: ".$telephone;
 
 $fiche = new InfoFichesDB($cnx);
 $data = $fiche->getInfoFichesParIdFiche($id_fiche);

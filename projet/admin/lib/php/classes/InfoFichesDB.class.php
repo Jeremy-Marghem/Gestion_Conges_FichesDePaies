@@ -47,6 +47,7 @@ class InfoFichesDB extends InfoFiches{
     }  
     public function create($debut,$id,$fin,$brut,$net,$heures){
         try{
+        $query="SELECT createfiche('$debut','$id','$fin','$brut','$net','$heures')";
         $resultset=$this->_db->prepare($query);
         $resultset->execute();
         return 1;

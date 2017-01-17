@@ -76,13 +76,13 @@ if (isset($_POST['submit'])) {
     }
 
     if ($ok) {
-        $verif = $info->getMajMdp($_SESSION['id'], $mdp, $new_mdp);
+        $verif = $info->getMajMdp($_SESSION['id'], $new_mdp);
 
-        if ($verif == 0) {
+        if ($verif != 0) {
             ?>
             <script>
                 $('#remarque').html("Ereur lors de la mise à jour");
-                 $('#remarque').addClass("errorRed2");
+                $('#remarque').addClass("errorRed2");
             </script>
         <?php}else{
             ?>

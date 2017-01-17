@@ -26,23 +26,7 @@ class InfoIndividuDB extends InfoIndividu{
 
         return $_infoArray;
     }
-    public function searchByName($recherche){
-        try{
-            $query = "SELECT * FROM individu WHERE nom_individu = '$recherche'";
-            $resultset = $this->_db->prepare($query);
-            $resultset->execute();
-        } catch (PDOException $ex) {
-
-        }
-        
-        $_infoArray = null;
-        
-        while ($data = $resultset->fetch()) {
-            $_infoArray[] = new InfoIndividu($data);
-        }
-
-        return $_infoArray;        
-    }
+    
     public function getVerifIndividu($login, $password) {
         try {
             $query = "SELECT * FROM individu WHERE login = :login AND password = :password";
@@ -73,7 +57,6 @@ class InfoIndividuDB extends InfoIndividu{
             while ($data = $resultset->fetch()) {
                 $_infoArray[] = new InfoIndividu($data);
             }
-
             if (count($_infoArray) == 2) {
                 return 1;
             } else {
@@ -84,15 +67,12 @@ class InfoIndividuDB extends InfoIndividu{
         }
     }
 
-    public function getMajMdp($id, $password, $newpassword) {
+    public function getMajMdp($id,$newpassword) {
         try {
-            $query = "SELECT updatemdp('$id','$newpassword''$password'";
+            $query = "UPDATE individu SET password='$newpassword' WHERE id_individu='$id'";
             $resultset = $this->_db->prepare($query);
             $resultset->execute();
-
-            $retour = $resultset->fetchColumn(0);
-
-            return $retour;
+            return 1;
         } catch (PDOException $ex) { 
             return 0;
         }

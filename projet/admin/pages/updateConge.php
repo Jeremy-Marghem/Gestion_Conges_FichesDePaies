@@ -2,14 +2,15 @@
 
 $id = $_GET['id'];
 $val = $_GET['val'];
+$inf = new InfoCongesDB($cnx);
 $nb= $_GET['nb'];
 $ind = $_GET['individu'];
 $info = new InfoIndividuDB($cnx);
+$resultat = $inf->updateConge($id, $val);
+
 if($val == strval(-1)){
     $result = $info->augmenteNb($ind,$nb);
 }
-$inf = new InfoCongesDB($cnx);
-$resultat = $inf->updateConge($id, $val);
 if($resultat == 1){
     $message = "Demande bien traitée!";
 }else{

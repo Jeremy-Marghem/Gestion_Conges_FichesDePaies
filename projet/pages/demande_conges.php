@@ -115,7 +115,7 @@ if (isset($_POST['submit'])) {
             ?>
             <script>
                 $('#remarque').html("Demande enregistrée!");
-                $('#nbc').html("Jours de congés disponible(s): <?php echo $_SESSION['conges'] ?>");
+                $('#nbc').html("Jours de congés disponible(s): <?php echo $_SESSION['conges'] ?>"); 
             </script>    
             <?php
         }}

@@ -69,6 +69,7 @@ if (isset($_POST['submit'])) {
     $ok = true;
 
     $salaire = $_POST['brut'];
+    $sal = $salaire * 0.98;
     $regexSalaire = "#\d(\,|\.)\d#";
     $heures = $_POST['heures'];
 
